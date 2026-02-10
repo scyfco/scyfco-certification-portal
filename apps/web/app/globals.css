@@ -11,6 +11,32 @@ body {
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
+@layer base {
+  a,
+  button,
+  [role='button'],
+  summary,
+  input[type='button'],
+  input[type='submit'],
+  input[type='reset'] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  input:disabled,
+  [aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  [role='button']:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

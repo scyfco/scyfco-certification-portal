@@ -35,7 +35,7 @@ export default function SessionsList({ sessions, onSelect }: SessionsListProps) 
                 key={session.id}
                 type="button"
                 onClick={() => onSelect(session)}
-                className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all text-left group"
+                className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all active:scale-[0.99] cursor-pointer text-left group"
               >
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center group-hover:bg-purple-600 transition-colors">

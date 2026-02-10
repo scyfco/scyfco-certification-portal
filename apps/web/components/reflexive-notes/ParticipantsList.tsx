@@ -55,7 +55,7 @@ export default function ParticipantsList({
           <button
             type="button"
             onClick={onBack}
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-4 cursor-pointer"
           >
             <ArrowLeftIcon className="w-4 h-4" />
             <span className="text-sm font-medium">Retour aux sessions</span>
@@ -90,7 +90,7 @@ export default function ParticipantsList({
                   type="button"
                   onClick={onSave}
                   disabled={isBatchSaving}
-                  className="inline-flex w-full items-center justify-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed sm:w-auto sm:ml-auto"
+                  className="inline-flex w-full items-center justify-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 transition-all active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer sm:w-auto sm:ml-auto"
                 >
                   {isBatchSaving ? (
                     <>
@@ -152,7 +152,7 @@ export default function ParticipantsList({
                       <button
                         type="button"
                         onClick={() => onOpenDetails(participant)}
-                        className="inline-flex w-full items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all sm:w-auto"
+                        className="inline-flex w-full items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all active:scale-[0.99] cursor-pointer sm:w-auto"
                       >
                         <DocumentTextIcon className="w-4 h-4" />
                         Réponse
