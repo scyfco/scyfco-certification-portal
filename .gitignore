@@ -90,3 +90,5 @@ postgres_data/
 # Misc
 .cache/
 .turbo/
+
+note.txt
