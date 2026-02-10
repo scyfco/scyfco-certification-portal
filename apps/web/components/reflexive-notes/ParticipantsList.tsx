@@ -49,7 +49,7 @@ export default function ParticipantsList({
   onOpenDetails,
 }: ParticipantsListProps) {
   return (
-    <div className="p-6 md:p-8">
+    <div className="p-4 sm:p-6 md:p-8">
       <div className="max-w-6xl mx-auto">
         <div className="mb-6">
           <button
@@ -61,11 +61,11 @@ export default function ParticipantsList({
             <span className="text-sm font-medium">Retour aux sessions</span>
           </button>
 
-          <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
-            <h1 className="text-2xl font-semibold text-gray-900 mb-2">
+          <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-6 shadow-sm">
+            <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-2">
               {selectedSession.name}
             </h1>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
               Consultez les réponses des participants aux évaluations réflexives et attribuez une note sur 100.
               Cliquez sur "Réponse" pour lire l'évaluation complète d'un participant avant d'attribuer sa note.
             </p>
@@ -85,12 +85,12 @@ export default function ParticipantsList({
         ) : (
           <>
             {pendingCount > 0 && (
-              <div className="mb-4 flex justify-end">
+              <div className="mb-4 flex">
                 <button
                   type="button"
                   onClick={onSave}
                   disabled={isBatchSaving}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex w-full items-center justify-center gap-2 px-5 py-2.5 bg-purple-600 text-white rounded-lg font-medium hover:bg-purple-700 focus:ring-4 focus:ring-purple-200 transition-all disabled:opacity-50 disabled:cursor-not-allowed sm:w-auto sm:ml-auto"
                 >
                   {isBatchSaving ? (
                     <>
@@ -107,53 +107,57 @@ export default function ParticipantsList({
               </div>
             )}
 
-            <div className="space-y-3">
+            <div className="space-y-4">
               {participants.map((participant) => (
                 <div
                   key={participant.id}
                   className="bg-white rounded-lg border border-gray-200 hover:border-gray-300 transition-all"
                 >
-                  <div className="p-5 flex items-center gap-4">
+                  <div className="p-4 sm:p-5 flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-4">
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-gray-900 truncate">
                         {participant.firstName} {participant.name}
                       </h3>
                       <p className="text-sm text-gray-500 truncate">{participant.email}</p>
                     </div>
-
-                    <div className="flex items-center gap-3">
-                      <label htmlFor={`note-${participant.id}`} className="text-sm font-medium text-gray-700 whitespace-nowrap">
-                        Note réflexive
-                      </label>
-                      <div className="flex items-center gap-2">
-                        <input
-                          id={`note-${participant.id}`}
-                          type="number"
-                          min="0"
-                          max="100"
-                          step="1"
-                          value={notes[participant.id] ?? ''}
-                          onChange={(e) =>
-                            onUpdateNote(
-                              participant.id,
-                              e.target.value ? parseFloat(e.target.value) : null
-                            )
-                          }
-                          placeholder="0-100"
-                          className="w-20 px-3 py-2 border border-gray-300 rounded-md text-center focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
-                        />
-                        <span className="text-sm text-gray-500">/ 100</span>
+                    <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center">
+                      <div className="flex w-full flex-col gap-2 sm:flex-row sm:items-center">
+                        <label
+                          htmlFor={`note-${participant.id}`}
+                          className="text-sm font-medium text-gray-700 sm:whitespace-nowrap"
+                        >
+                          Note réflexive
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <input
+                            id={`note-${participant.id}`}
+                            type="number"
+                            min="0"
+                            max="100"
+                            step="1"
+                            value={notes[participant.id] ?? ''}
+                            onChange={(e) =>
+                              onUpdateNote(
+                                participant.id,
+                                e.target.value ? parseFloat(e.target.value) : null
+                              )
+                            }
+                            placeholder="0-100"
+                            className="w-24 px-3 py-2 border border-gray-300 rounded-md text-center focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                          />
+                          <span className="text-sm text-gray-500">/ 100</span>
+                        </div>
                       </div>
-                    </div>
 
-                    <button
-                      type="button"
-                      onClick={() => onOpenDetails(participant)}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all whitespace-nowrap"
-                    >
-                      <DocumentTextIcon className="w-4 h-4" />
-                      Réponse
-                    </button>
+                      <button
+                        type="button"
+                        onClick={() => onOpenDetails(participant)}
+                        className="inline-flex w-full items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all sm:w-auto"
+                      >
+                        <DocumentTextIcon className="w-4 h-4" />
+                        Réponse
+                      </button>
+                    </div>
                   </div>
                 </div>
               ))}
