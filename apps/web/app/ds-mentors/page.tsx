@@ -21,7 +21,6 @@ import {
 type MenuItem = {
   id: string;
   name: string;
-  href?: string;
   iframeSrc?: string;
   icon: typeof UserIcon;
   description: string;
@@ -32,7 +31,6 @@ const menuItems: MenuItem[] = [
   {
     id: 'fichier-participants-inscriptions',
     name: 'Fichier participants_ Inscriptions',
-    href: 'https://airtable.com/embed/appFxs2dtqdiAbGVM/shrvNQmEw2DqKdYHp',
     iframeSrc: 'https://airtable.com/embed/appFxs2dtqdiAbGVM/shrvNQmEw2DqKdYHp',
     icon: HomeIcon,
     description: 'Accès au tableau de bord principal',
@@ -40,7 +38,6 @@ const menuItems: MenuItem[] = [
   {
     id: 'qcm',
     name: 'QCM',
-    href: 'https://airtable.com/appFxs2dtqdiAbGVM/shrZccpIj87PQ6BKA',
     iframeSrc: 'https://airtable.com/embed/appFxs2dtqdiAbGVM/shrZccpIj87PQ6BKA',
     icon: ClipboardDocumentCheckIcon,
     description: 'Gestion des questionnaires à choix multiples',
@@ -48,7 +45,6 @@ const menuItems: MenuItem[] = [
   {
     id: 'synthese-reflexive',
     name: 'Synthèse Réflexive - vue globale',
-    href: 'https://airtable.com/appFxs2dtqdiAbGVM/shriKy3UGi3dTnCUE4',
     iframeSrc: 'https://airtable.com/embed/appFxs2dtqdiAbGVM/shriKy3UGi3dTnCUE',
     icon: DocumentTextIcon,
     description: 'Vue globale des synthèses réflexives',
@@ -63,7 +59,6 @@ const menuItems: MenuItem[] = [
   {
     id: 'TB-Evaluation-Reflexive',
     name: 'TB_Evaluation_Reflexive',
-    href: 'https://airtable.com/appFxs2dtqdiAbGVM/shrH0qvZDsbKyyv5l',
     iframeSrc: 'https://airtable.com/embed/appFxs2dtqdiAbGVM/shrH0qvZDsbKyyv5l',
     icon: HomeIcon,
     description: 'Accès au tableau de bord principal',
@@ -71,7 +66,6 @@ const menuItems: MenuItem[] = [
   {
     id: 'suivi-session',
     name: 'Suivi Session - NPS & Résultats',
-    href: 'https://airtable.com/appFxs2dtqdiAbGVM/shrr2EiQVREFVVlrH',
     iframeSrc: 'https://airtable.com/embed/appFxs2dtqdiAbGVM/shrr2EiQVREFVVlrH',
     icon: ChartBarIcon,
     description: 'Suivi des sessions avec NPS et résultats',
@@ -79,7 +73,6 @@ const menuItems: MenuItem[] = [
   {
     id: 'evaluation-experientielle',
     name: 'Évaluation Expérientielle',
-    href: 'https://airtable.com/appFxs2dtqdiAbGVM/shrDjxW2JE6fytFxJ',
     iframeSrc: 'https://airtable.com/embed/appFxs2dtqdiAbGVM/shrDjxW2JE6fytFxJ',
     icon: AcademicCapIcon,
     description: 'Gestion des évaluations expérientielles',
@@ -87,7 +80,6 @@ const menuItems: MenuItem[] = [
   {
     id: 'recap-note',
     name: 'Recap Note',
-    href: 'https://airtable.com/appFxs2dtqdiAbGVM/shrN4SJBtNKrcVK0K',
     iframeSrc: 'https://airtable.com/embed/appFxs2dtqdiAbGVM/shrN4SJBtNKrcVK0K',
     icon: DocumentTextIcon,
     description: 'Récapitulatif des notes',
