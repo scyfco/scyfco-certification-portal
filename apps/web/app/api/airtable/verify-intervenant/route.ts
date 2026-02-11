@@ -6,7 +6,7 @@ export async function POST(request: NextRequest) {
   try {
     const session = await getSessionFromRequest(request);
     if (!session) {
-      return NextResponse.json({ error: 'Non authentifié' }, { status: 401 });
+      return NextResponse.json({ error: 'Non authentifiÃ©' }, { status: 401 });
     }
 
     const { email } = await request.json();
@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
 
     if (!intervenantData) {
       return NextResponse.json(
-        { error: 'Aucun intervenant trouvé avec cet email' },
+        { error: 'Aucun intervenant trouvÃ© avec cet email' },
         { status: 404 }
       );
     }
