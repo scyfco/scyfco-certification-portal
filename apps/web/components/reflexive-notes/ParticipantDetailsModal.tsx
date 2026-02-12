@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
@@ -32,14 +32,14 @@ type ParticipantDetailsModalProps = {
 export default function ParticipantDetailsModal({ participant, onClose }: ParticipantDetailsModalProps) {
   return (
     <div
-      className="fixed inset-0 bg-gray-900/40 backdrop-blur-md flex items-center justify-center z-50 p-4"
+      className="fixed inset-0 bg-gray-900/40 z-50"
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg shadow-lg max-w-5xl w-full max-h-[90vh] flex flex-col"
+        className="fixed inset-y-0 right-0 w-full sm:w-[28rem] md:w-[32rem] lg:w-[40rem] bg-white shadow-2xl flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between rounded-t-lg flex-shrink-0">
+        <div className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between flex-shrink-0">
           <div>
             <h3 className="text-lg font-semibold text-gray-900">
               Évaluation réflexive
@@ -59,7 +59,7 @@ export default function ParticipantDetailsModal({ participant, onClose }: Partic
 
         <div className="overflow-y-auto flex-1 bg-gray-50">
           <div className="p-6">
-            <div className="bg-white rounded-lg border border-gray-200 p-5 space-y-4">
+            <div className="space-y-6">
               <QuestionBlock
                 question="Analyser et prévenir les risques liés à une situation complexe"
                 answer={participant.analyserPrevenir}
@@ -143,18 +143,18 @@ function QuestionBlock({
   isNPS?: boolean;
 }) {
   return (
-    <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
-      <div className="text-[11px] font-semibold uppercase tracking-wide text-gray-500">
+    <div className="pb-6 border-b border-gray-100 last:border-b-0">
+      <div className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">
         Question
       </div>
       <p className="mt-1 text-sm font-semibold text-gray-900">
         {question}
       </p>
       <div className="mt-3">
-        <div className="text-[11px] font-semibold uppercase tracking-wide text-gray-500">
+        <div className="text-[11px] font-semibold uppercase tracking-wide text-gray-400">
           Réponse
         </div>
-        <div className="mt-1 rounded-md border border-gray-200 bg-white p-3 text-gray-900">
+        <div className="mt-1 text-gray-900">
           {answer ? (
             isNPS ? (
               <div className="inline-flex items-baseline gap-1">
@@ -162,7 +162,7 @@ function QuestionBlock({
                 <span className="text-sm text-gray-500">/ 10</span>
               </div>
             ) : (
-              <p className="whitespace-pre-wrap text-sm leading-relaxed">{answer}</p>
+              <p className="whitespace-pre-wrap text-sm leading-relaxed text-gray-700">{answer}</p>
             )
           ) : (
             <span className="text-gray-400 italic text-sm">Non renseigné</span>
@@ -172,3 +172,4 @@ function QuestionBlock({
     </div>
   );
 }
+
