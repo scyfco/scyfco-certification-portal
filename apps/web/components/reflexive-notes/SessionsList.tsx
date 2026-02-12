@@ -20,7 +20,9 @@ export default function SessionsList({ sessions, onSelect }: SessionsListProps) 
     <div className="pt-4 px-6">
       <div className="max-w-6xl">
         <div className="mb-8">
-          <h2 className="text-2xl font-semibold text-gray-900">Vos Sessions</h2>
+          <h2 className="text-l text-gray-900">
+            Interface DS/MENTOR &gt; <span className="font-semibold">Attribuer des notes réflexives</span>
+          </h2>
         </div>
 
         {sessions.length === 0 ? (
