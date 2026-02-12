@@ -17,10 +17,10 @@ type SessionsListProps = {
 
 export default function SessionsList({ sessions, onSelect }: SessionsListProps) {
   return (
-    <div className="p-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="pt-4 px-6">
+      <div className="max-w-6xl">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900">Vos Sessions</h2>
+          <h2 className="text-2xl font-semibold text-gray-900">Vos Sessions</h2>
         </div>
 
         {sessions.length === 0 ? (
