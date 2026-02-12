@@ -73,12 +73,9 @@ export default function LoginPage() {
 
             {/* Header Text */}
             <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              Bon retour
-            </h1>
             <p className="text-gray-600">
               Accédez à votre portail de certification SCYFCO pour suivre vos sessions, 
-              évaluer vos participants et gérer l'ensemble de vos parcours de formation.
+              évaluez vos participants et gérez l'ensemble de vos parcours de formation.
             </p>
             </div>
 
