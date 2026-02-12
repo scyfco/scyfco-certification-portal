@@ -106,7 +106,12 @@ export default function DSMentorsPageClient() {
         const response = await fetch('/api/auth/me');
         if (response.ok) {
           const data = await response.json();
-          setUserName(data.intervenant?.name || data.intervenant?.email || '');
+          const firstName = data.intervenant?.firstName?.trim();
+          const lastName = data.intervenant?.name?.trim();
+          const displayName = firstName && lastName
+            ? `${firstName} ${lastName}`
+            : firstName || lastName || data.intervenant?.email || '';
+          setUserName(displayName);
         }
       } catch (err) {
         console.error('Error loading user data:', err);

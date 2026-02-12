@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 export type Intervenant = {
   id: string;
   name: string;
+  firstName: string;
   email: string;
   sessions: string[];
   equipe: string;

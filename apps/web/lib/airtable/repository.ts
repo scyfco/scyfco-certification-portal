@@ -127,7 +127,7 @@ type SessionFields = {
 
 type IntervenantFields = {
   Nom?: string;
-  Name?: string;
+  Prenom?: string;
   Email?: string;
   Sessions?: string[];
   Equipe?: string | number;
@@ -201,6 +201,7 @@ export type Session = {
 export type Intervenant = {
   id: string;
   name: string;
+  firstName: string;
   email: string;
   sessions: string[];
   equipe: string;
@@ -437,7 +438,8 @@ const mapSession = (record: AirtableRecord<SessionFields>): Session => ({
 
 const mapIntervenant = (record: AirtableRecord<IntervenantFields>, fallbackEmail: string): Intervenant => ({
   id: record.id,
-  name: record.fields.Nom || record.fields.Name || '',
+  name: record.fields.Nom || '',
+  firstName: record.fields.Prenom || '',
   email: record.fields.Email || fallbackEmail,
   sessions: record.fields.Sessions || [],
   equipe:

@@ -6,6 +6,7 @@ export const SESSION_COOKIE_NAME = 'scyfco_session';
 type SessionUser = {
   id: string;
   name: string;
+  firstName: string;
   email: string;
   sessions: string[];
   equipe: string;
