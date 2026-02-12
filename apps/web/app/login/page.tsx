@@ -39,16 +39,6 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-white flex">
-      {/* Logo Section - Top Left */}
-      <div className="absolute top-8 left-8">
-        {/* Placeholder pour votre logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-red-500 rounded-lg flex items-center justify-center">
-            {/* Remplacer par votre logo */}
-            <span className="text-white font-bold text-xl">S</span>
-          </div>
-        </div>
-      </div>
 
       {/* Left Side - Image/Illustration Area */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
@@ -63,7 +53,7 @@ export default function LoginPage() {
       <div className="flex-1 flex items-center justify-center p-8">
         <div className="w-full max-w-md">
           {/* Logo */}
-          <div className="flex justify-center mb-20">
+          <div className="flex justify-center mb-10">
             <img 
               src="/images/logo%20scyfco.png" 
               alt="SCYFCO Logo" 
