@@ -30,7 +30,7 @@ type MenuItem = {
 const menuItems: MenuItem[] = [
   {
     id: 'fichier-participants-inscriptions',
-    name: 'Fichier participants_ Inscriptions',
+    name: 'Fichier participants inscriptions',
     iframeSrc: 'https://airtable.com/embed/appHPKxQTpdh4SBfs/shrx3vaPZWOyZW9k7',
     icon: HomeIcon,
     description: 'Accès au tableau de bord principal',
@@ -44,7 +44,7 @@ const menuItems: MenuItem[] = [
   },
   {
     id: 'synthese-reflexive',
-    name: 'Synthèse Réflexive - vue globale',
+    name: 'Synthèse réflexive - vue globale',
     iframeSrc: 'https://airtable.com/embed/appHPKxQTpdh4SBfs/shrnCQ7kPHCDW7UyF',
     icon: DocumentTextIcon,
     description: 'Vue globale des synthèses réflexives',
@@ -58,28 +58,21 @@ const menuItems: MenuItem[] = [
   },
   {
     id: 'TB-Evaluation-Reflexive',
-    name: 'TB_Evaluation_Reflexive',
+    name: 'TB Evaluation réflexive',
     iframeSrc: 'https://airtable.com/embed/appHPKxQTpdh4SBfs/shrRit8BpYyc9Y34L',
     icon: HomeIcon,
     description: 'Accès au tableau de bord principal',
   },
   {
-    id: 'suivi-session',
-    name: 'Suivi Session - NPS & Résultats',
-    iframeSrc: 'https://airtable.com/embed/appHPKxQTpdh4SBfs/shrSpQXFuAcIN4UeP',
-    icon: ChartBarIcon,
-    description: 'Suivi des sessions avec NPS et résultats',
-  },
-  {
     id: 'evaluation-experientielle',
-    name: 'Évaluation Expérientielle',
-    iframeSrc: 'https://airtable.com/embed/appHPKxQTpdh4SBfs/shrLsLqtN0hYuKJ5W',
+    name: 'Évaluation experientielle ',
+    iframeSrc: 'https://airtable.com/embed/appHPKxQTpdh4SBfs/shrSpQXFuAcIN4UeP',
     icon: AcademicCapIcon,
     description: 'Gestion des évaluations expérientielles',
-  },
+  },  
   {
     id: 'recap-note',
-    name: 'Recap Note',
+    name: 'Récap Note',
     iframeSrc: 'https://airtable.com/embed/appHPKxQTpdh4SBfs/shrdANBS0Gw4qok1r',
     icon: DocumentTextIcon,
     description: 'Récapitulatif des notes',
@@ -96,7 +89,7 @@ export default function DSMentorsPageClient() {
     viewParam ? menuItems.find(item => item.id === viewParam) || null : null
   );
   const [isLoading, setIsLoading] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userName, setUserName] = useState<string>('');
 
   // Charger le nom de l'utilisateur
@@ -122,6 +115,12 @@ export default function DSMentorsPageClient() {
   }, []);
 
   useEffect(() => {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      setSidebarOpen(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (selectedItem && !selectedItem.isInternalComponent) {
       setIsLoading(true);
     }
@@ -134,11 +133,9 @@ export default function DSMentorsPageClient() {
   const handleMenuClick = (item: MenuItem) => {
     setSelectedItem(item);
     window.history.pushState({}, '', `?view=${item.id}`);
-  };
-
-  const handleClose = () => {
-    setSelectedItem(null);
-    window.history.pushState({}, '', '/ds-mentors');
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      setSidebarOpen(false);
+    }
   };
 
   const handleLogout = () => {
@@ -148,9 +145,17 @@ export default function DSMentorsPageClient() {
 
   return (
     <ProtectedRoute>
-      <div className="flex h-screen bg-gray-100">
+      <div className="flex h-screen bg-gray-100 relative">
         {/* Sidebar */}
-        <div className={`${sidebarOpen ? 'w-80 md:w-96' : 'w-0'} bg-slate-800 text-white flex flex-col transition-all duration-300 overflow-hidden`}>
+        <div
+          className={`
+            fixed inset-y-0 left-0 z-30 w-80 max-w-[85vw] bg-slate-800 text-white flex flex-col
+            transform transition-transform duration-300 overflow-hidden
+            ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+            md:static md:translate-x-0 md:max-w-none md:transition-none
+            ${sidebarOpen ? 'md:w-96' : 'md:w-0'}
+          `}
+        >
           {/* Header */}
           <div className="h-14 bg-slate-900 flex items-center justify-between px-4 flex-shrink-0">
             <div className="flex items-center gap-2">
@@ -204,6 +209,14 @@ export default function DSMentorsPageClient() {
           </div>
         </div>
 
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 z-20 bg-black/40 md:hidden"
+            onClick={() => setSidebarOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
         {/* Main Content */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Toggle button when sidebar is closed */}
@@ -229,13 +242,6 @@ export default function DSMentorsPageClient() {
                   <selectedItem.icon className="h-5 w-5 text-gray-600" />
                   <h1 className="font-semibold text-gray-900">{selectedItem.name}</h1>
                 </div>
-                <button
-                  onClick={handleClose}
-                  className="p-2 hover:bg-gray-100 rounded transition-colors"
-                  aria-label="Fermer"
-                >
-                  <XMarkIcon className="h-5 w-5 text-gray-600" />
-                </button>
               </div>
 
               {/* Content */}
