@@ -2,8 +2,8 @@
 
 import {
   ArrowLeftIcon,
+  ArrowRightIcon,
   CheckCircleIcon,
-  DocumentTextIcon,
   UserGroupIcon,
 } from '@heroicons/react/24/outline';
 
@@ -67,7 +67,7 @@ export default function ParticipantsList({
             </h1>
             <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
               Consultez les réponses des participants aux évaluations réflexives et attribuez une note sur 100.
-              Cliquez sur "Réponse" pour lire l'évaluation complète d'un participant avant d'attribuer sa note.
+              Cliquez sur "Ouvrir" pour lire l'évaluation complète d'un participant avant d'attribuer sa note.
             </p>
           </div>
         </div>
@@ -115,9 +115,19 @@ export default function ParticipantsList({
                 >
                   <div className="p-4 sm:p-5 flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-4">
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-medium text-gray-900 truncate">
-                        {participant.firstName} {participant.name}
-                      </h3>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-medium text-gray-900 truncate">
+                          {participant.firstName} {participant.name}
+                        </h3>
+                        <button
+                          type="button"
+                          onClick={() => onOpenDetails(participant)}
+                          className="inline-flex items-center gap-1.5 px-2 py-1 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-md transition-colors active:scale-[0.99] cursor-pointer shrink-0"
+                        >
+                          Ouvrir
+                          <ArrowRightIcon className="w-4 h-4" />
+                        </button>
+                      </div>
                       <p className="text-sm text-gray-500 truncate">{participant.email}</p>
                     </div>
                     <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center">
@@ -148,15 +158,6 @@ export default function ParticipantsList({
                           <span className="text-sm text-gray-500">/ 100</span>
                         </div>
                       </div>
-
-                      <button
-                        type="button"
-                        onClick={() => onOpenDetails(participant)}
-                        className="inline-flex w-full items-center justify-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:ring-4 focus:ring-blue-200 transition-all active:scale-[0.99] cursor-pointer sm:w-auto"
-                      >
-                        <DocumentTextIcon className="w-4 h-4" />
-                        Réponse
-                      </button>
                     </div>
                   </div>
                 </div>
