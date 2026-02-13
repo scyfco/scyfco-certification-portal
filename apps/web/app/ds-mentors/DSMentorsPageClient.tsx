@@ -5,6 +5,7 @@ import ProtectedRoute from '@/components/ProtectedRoute';
 import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import AttribuerNotesReflexives from '@/components/AttribuerNotesReflexives';
+import ConfirmDialog from '@/components/ConfirmDialog';
 import {
   UserIcon,
   DocumentTextIcon,
@@ -91,6 +92,8 @@ export default function DSMentorsPageClient() {
   const [isLoading, setIsLoading] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userName, setUserName] = useState<string>('');
+  const [isLogoutDialogOpen, setIsLogoutDialogOpen] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   // Charger le nom de l'utilisateur
   useEffect(() => {
@@ -139,6 +142,11 @@ export default function DSMentorsPageClient() {
   };
 
   const handleLogout = () => {
+    setIsLogoutDialogOpen(true);
+  };
+
+  const confirmLogout = () => {
+    setIsLoggingOut(true);
     fetch('/api/auth/logout', { method: 'POST' })
       .finally(() => router.push('/login'));
   };
@@ -286,6 +294,19 @@ export default function DSMentorsPageClient() {
             </div>
           )}
         </div>
+
+        <ConfirmDialog
+          open={isLogoutDialogOpen}
+          title="Confirmer la déconnexion"
+          message="Voulez-vous vraiment vous déconnecter ?"
+          confirmLabel="Se déconnecter"
+          loading={isLoggingOut}
+          onConfirm={confirmLogout}
+          onCancel={() => {
+            if (isLoggingOut) return;
+            setIsLogoutDialogOpen(false);
+          }}
+        />
       </div>
     </ProtectedRoute>
   );
