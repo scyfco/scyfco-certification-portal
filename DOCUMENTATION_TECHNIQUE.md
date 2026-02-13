@@ -51,6 +51,7 @@ Notes :
 
 - Auth "passwordless" par email : l'utilisateur saisit son email sur `/login`.
 - Le backend vérifie l'email dans Airtable `Intervenant`.
+- Le backend vérifie ensuite que le champ `Autorisé Portail` vaut `oui`.
 - Si OK, un JWT est créé et stocké dans un cookie httpOnly `scyfco_session`, valable 7 jours.
 - `middleware.ts` protège :
   - Pages : `/ds-mentors`

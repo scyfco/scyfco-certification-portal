@@ -2,6 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createSessionToken, SESSION_COOKIE_NAME } from '@/lib/auth';
 import { airtableRepository, isAirtableValidationError } from '@/lib/airtable/repository';
 
+const hasPortalAccess = (value: unknown) => {
+  if (typeof value !== 'string') return false;
+  return value.trim().toLowerCase() === 'oui';
+};
+
 export async function POST(request: NextRequest) {
   try {
     const { email } = await request.json();
@@ -9,6 +14,10 @@ export async function POST(request: NextRequest) {
     const intervenantData = await airtableRepository.findIntervenantByEmail(email);
     if (!intervenantData) {
       return NextResponse.json({ error: 'Aucun intervenant trouvé avec cet email' }, { status: 404 });
+    }
+
+    if (!hasPortalAccess(intervenantData.autorisePortail)) {
+      return NextResponse.json({ error: 'Acces portail non autorise' }, { status: 403 });
     }
 
     const token = await createSessionToken({ intervenant: intervenantData });

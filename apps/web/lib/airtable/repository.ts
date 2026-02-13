@@ -131,6 +131,7 @@ type IntervenantFields = {
   Email?: string;
   Sessions?: string[];
   Equipe?: string | number;
+  'Autorisé Portail'?: string;
 };
 
 
@@ -205,6 +206,7 @@ export type Intervenant = {
   email: string;
   sessions: string[];
   equipe: string;
+  autorisePortail: string;
 };
 
 
@@ -446,6 +448,7 @@ const mapIntervenant = (record: AirtableRecord<IntervenantFields>, fallbackEmail
     record.fields.Equipe === undefined || record.fields.Equipe === null
       ? ''
       : String(record.fields.Equipe),
+  autorisePortail: record.fields['Autoris\u00E9 Portail'] || '',
 });
 
 
