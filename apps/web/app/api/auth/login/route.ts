@@ -9,9 +9,9 @@ const hasPortalAccess = (value: unknown) => {
 
 export async function POST(request: NextRequest) {
   try {
-    const { email } = await request.json();
+    const { email, password } = await request.json();
 
-    const intervenantData = await airtableRepository.findIntervenantByEmail(email);
+    const intervenantData = await airtableRepository.findIntervenantByEmailAndPassword(email, password);
     if (!intervenantData) {
       return NextResponse.json({ error: 'Aucun intervenant trouvé avec cet email' }, { status: 404 });
     }

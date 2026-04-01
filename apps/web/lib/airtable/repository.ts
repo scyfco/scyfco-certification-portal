@@ -132,6 +132,7 @@ type IntervenantFields = {
   Sessions?: string[];
   Equipe?: string | number;
   'Autorisé Portail'?: string;
+  mdp?: string;
 };
 
 
@@ -591,6 +592,23 @@ export const airtableRepository = {
     const params = new URLSearchParams();
 
     params.set('filterByFormula', `{Email} = '${escapeFormulaValue(email)}'`);
+
+    const data = await airtable.listAll<IntervenantFields>(TABLES.INTERVENANT, params);
+
+    if (!data.records || data.records.length === 0) return null;
+
+    return mapIntervenant(data.records[0], email);
+
+  },
+
+  findIntervenantByEmailAndPassword: async (emailInput: unknown, passwordInput: unknown) => {
+
+    const email = normalizeEmail(emailInput);
+    const password = normalizeString(passwordInput, "mdp") || '';
+
+    const params = new URLSearchParams();
+
+        params.set('filterByFormula', `AND({Email} = '${escapeFormulaValue(email)}', {mdp} = '${escapeFormulaValue(password)}')`);
 
     const data = await airtable.listAll<IntervenantFields>(TABLES.INTERVENANT, params);
 
